@@ -33,3 +33,24 @@ result = people.reduce((acc,person)=>{
     if(acc) return true;
     return person.age> 18; 
 },true)
+
+// count occurences
+result = orders.reduce((acc,item)=>{
+    return {...acc,[item.order]: (acc[item.order]|| 0) + 1 }
+},{})
+
+//flatten array
+
+const folders = [
+    "index.js",
+    ["flatten.js", "map.js"],
+    ["any.js", ["all.js", "count.js"]],
+  ];
+  
+function flatten(acc,item){
+    if(Array.isArray(item)){
+        return item.reduce(flatten,acc)
+    }
+    return [...acc,item];
+}
+result  = folders.reduce(flatten,[])
