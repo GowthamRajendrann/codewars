@@ -25,10 +25,12 @@ function countSmileys(arr) {
   return arr.reduce((acc, item) => {
     if (item.includes(":") || item.includes(";")) {
       if (item.includes(")") || item.includes("D")) {
-        return (acc += 1);
+        console.log(acc,item)
+        return ++acc
       }
     } else {
       return acc;
     }
+    return acc
   }, 0);
 }
