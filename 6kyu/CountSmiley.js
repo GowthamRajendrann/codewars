@@ -22,15 +22,18 @@
 
 //My Solution
 function countSmileys(arr) {
+  console.log(arr);
   return arr.reduce((acc, item) => {
-    if (item.includes(":") || item.includes(";")) {
+    if ((item.includes(":") || item.includes(";")) && item.length <= 3) {
       if (item.includes(")") || item.includes("D")) {
-        console.log(acc,item)
-        return ++acc
+        if (item.length === 3) {
+          return item.includes("-") || item.includes("~") ? ++acc : acc;
+        }
+        return ++acc;
       }
     } else {
       return acc;
     }
-    return acc
+    return acc;
   }, 0);
 }
