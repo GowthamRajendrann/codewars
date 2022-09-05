@@ -1,5 +1,4 @@
-//My Solution
-function titleCase(title, minorWords = []) {
+function titleCase(title, minorWords = '') {
   let minor = minorWords.split(" ").map((item) => item.toLowerCase());
   let capTitle = title
     .split(" ")
@@ -14,12 +13,23 @@ function titleCase(title, minorWords = []) {
 
 function mTitle(title, minor) {
   return title.split(" ").reduce((acc, item, index) => {
-    if (index === 0) {
+    if (index === 0 || !minor.includes(item.toLowerCase())) {
       return acc + " " + item;
     }
-    if (minor.includes(item.toLowerCase())) {
       return acc + " " + item.toLowerCase();
+  }, "").trim();
+}
+
+
+//Best Solution
+function titleCase(title, minorWords) {
+  var minorWords = typeof minorWords !== "undefined" ? minorWords.toLowerCase().split(' ') : [];
+  return title.toLowerCase().split(' ').map(function(v, i) {
+    if(v != "" && ( (minorWords.indexOf(v) === -1) || i == 0)) {
+      v = v.split('');
+      v[0] = v[0].toUpperCase();
+      v = v.join('');
     }
-    return acc + " " + item;
-  }, "");
+    return v;
+  }).join(' ');
 }
